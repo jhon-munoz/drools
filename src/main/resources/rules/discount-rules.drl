@@ -1,0 +1,24 @@
+package com.example.rules
+
+import com.project.drools.model.Product
+
+rule "Apply 10% Discount"
+when
+    $product: Product(price > 50)
+then
+    $product.setDiscountedPrice($product.getPrice() * 0.9);
+end
+
+rule "Apply 50% Discount"
+when
+    $product: Product(price < 50)
+then
+    $product.setDiscountedPrice($product.getPrice() * 0.9);
+end
+
+rule "Apply 20% Discount"
+when
+    $product: Product(price == 50)
+then
+    $product.setDiscountedPrice($product.getPrice() * 0.2);
+end
