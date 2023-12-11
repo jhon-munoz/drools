@@ -1,10 +1,36 @@
-package com.example.rules
-
 import com.project.drools.model.Lender
 
-rule "lender-blue"
+rule "1"
 when
-    $lender : Lender( loanType == "Refinance" || loanType == "Refinance Vehicle", term > 0 && term <= 48, scores >= 750)
+    $lender : Lender( loanType == "Refinance" || loanType == "Refinance Vehicle", term > 0 && term <= 48, score >= 750)
 then
     $lender.setRate(8.39d);
+end
+
+rule "2"
+when
+    $lender : Lender( loanType == "Refinance" || loanType == "Refinance Vehicle", term > 0 && term <= 48, score >= 720 && score <750)
+then
+    $lender.setRate(8.89d);
+end
+
+rule "3"
+when
+    $lender : Lender( loanType == "Refinance" || loanType == "Refinance Vehicle", term > 0 && term <= 48, score >= 690 && score <720)
+then
+    $lender.setRate(9.64d);
+end
+
+rule "4"
+when
+    $lender : Lender( loanType == "Refinance" || loanType == "Refinance Vehicle", term > 0 && term <= 48, score >= 665 && score <690)
+then
+    $lender.setRate(10.49);
+end
+
+rule "5"
+when
+    $lender : Lender( loanType == "Refinance" || loanType == "Refinance Vehicle", term > 0 && term <= 48, score >= 640 && score <665)
+then
+    $lender.setRate(12.75);
 end

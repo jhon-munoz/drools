@@ -16,9 +16,6 @@ public class LenderController {
     @Autowired
     private KieSession kieSession;
 
-    @Autowired
-    private KieScanner kieScanner;
-
     @PostMapping("/blue")
     public Lender applyDiscount(@RequestBody Lender lender) {
         kieSession.insert(lender);

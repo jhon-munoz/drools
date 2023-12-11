@@ -5,9 +5,9 @@ import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
 import org.kie.api.builder.KieModule;
 import org.kie.api.builder.KieRepository;
-import org.kie.api.builder.KieScanner;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.kie.internal.io.ResourceFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.io.Resource;
@@ -24,9 +24,11 @@ public class DroolsConfig {
     private static final String A = "demo";
     private static final String V = "1.0.0";
 
+    private final KieServices kieServices = KieServices.Factory.get();
+
     @Bean
     public KieContainer kieContainer() throws IOException {
-        KieServices kieServices = KieServices.Factory.get();
+//        KieServices kieServices = KieServices.Factory.get();
 
         KieRepository kieRepository = kieServices.getRepository();
         kieRepository.addKieModule(kieRepository::getDefaultReleaseId);
@@ -39,9 +41,10 @@ public class DroolsConfig {
             kieFileSystem.write("src/main/resources/" + file.getFilename(), content);
 //            kieFileSystem.write("src/main/resources/" + file.getFilename(), file.getInputStream());
         }
-//        kieFileSystem.write(ResourceFactory.newClassPathResource("rules/discount-rules.drl"));
+//        kieFileSystem.write(ResourceFactory.newClassPathResource("rules/lender-blue.xls"));
 
-        KieBuilder kb = kieServices.newKieBuilder(kieFileSystem).buildAll();
+        KieBuilder kb = kieServices.newKieBuilder(kieFileSystem);
+        kb.buildAll();
         KieModule kieModule = kb.getKieModule();
 //        ReleaseId releaseId = kieServices.newReleaseId(G,A,V);
 
@@ -55,10 +58,10 @@ public class DroolsConfig {
         return kieContainer.newKieSession();
     }
 
-    @Bean
-    public KieScanner kieScanner(KieContainer kieContainer) {
-        KieScanner kieScanner = KieServices.Factory.get().newKieScanner(kieContainer);
-        kieScanner.start(1L); // Adjust the scan interval as needed
-        return kieScanner;
-    }
+//    @Bean
+//    public KieScanner kieScanner(KieContainer kieContainer) {
+//        KieScanner kieScanner = KieServices.Factory.get().newKieScanner(kieContainer);
+//        kieScanner.start(1L); // Adjust the scan interval as needed
+//        return kieScanner;
+//    }
 }

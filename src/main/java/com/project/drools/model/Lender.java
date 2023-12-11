@@ -6,7 +6,7 @@ import lombok.Data;
 public class Lender {
     private Integer id;
     private Integer term;
-    private Integer scores;
+    private Integer score;
     private String loanType;
     private Double rate;
 }

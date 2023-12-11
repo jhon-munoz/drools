@@ -27,11 +27,11 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	implementation 'org.springframework.boot:spring-boot-starter'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation "org.kie:kie-api:${droolsVersion}"
+//	implementation "org.kie:kie-api:${droolsVersion}"
 //	implementation "org.kie:kie-spring:${droolsVersion}"
 	implementation "org.drools:drools-core:${droolsVersion}"
-	implementation "org.kie:kie-ci:${droolsVersion}"
-//	implementation "org.default:artifact:1.0.0"
+	implementation "org.drools:drools-decisiontables:${droolsVersion}"
+//	implementation "org.kie:kie-ci:${droolsVersion}"
 
 	compileOnly 'org.projectlombok:lombok'
 

@@ -14,5 +14,5 @@ http://localhost:8080/api/blue
 {
 "loanType": "Refinance",
 "term": 20,
-"scores": 800
+"score": 800
 }
