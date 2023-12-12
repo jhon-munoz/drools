@@ -5,6 +5,7 @@ when
     $lender : Lender( loanType == "Refinance" || loanType == "Refinance Vehicle", term > 0 && term <= 48, score >= 750)
 then
     $lender.setRate(8.39d);
+    System.out.println("Rule 1");
 end
 
 rule "2"
@@ -12,6 +13,7 @@ when
     $lender : Lender( loanType == "Refinance" || loanType == "Refinance Vehicle", term > 0 && term <= 48, score >= 720 && score <750)
 then
     $lender.setRate(8.89d);
+    System.out.println("Rule 2");
 end
 
 rule "3"
@@ -19,6 +21,7 @@ when
     $lender : Lender( loanType == "Refinance" || loanType == "Refinance Vehicle", term > 0 && term <= 48, score >= 690 && score <720)
 then
     $lender.setRate(9.64d);
+    System.out.println("Rule 3");
 end
 
 rule "4"
@@ -26,6 +29,7 @@ when
     $lender : Lender( loanType == "Refinance" || loanType == "Refinance Vehicle", term > 0 && term <= 48, score >= 665 && score <690)
 then
     $lender.setRate(10.49);
+    System.out.println("Rule 4");
 end
 
 rule "5"
@@ -33,4 +37,5 @@ when
     $lender : Lender( loanType == "Refinance" || loanType == "Refinance Vehicle", term > 0 && term <= 48, score >= 640 && score <665)
 then
     $lender.setRate(12.75);
+    System.out.println("Rule 5");
 end

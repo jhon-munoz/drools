@@ -35,13 +35,13 @@ public class DroolsConfig {
 
         KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
         // Add rule files to KieFileSystem
-        Resource[] ruleFiles = new PathMatchingResourcePatternResolver().getResources("classpath:/rules/*.drl");
+        Resource[] ruleFiles = new PathMatchingResourcePatternResolver().getResources("classpath:/rules/*");
         for (Resource file : ruleFiles) {
-            String content = new String(file.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
-            kieFileSystem.write("src/main/resources/" + file.getFilename(), content);
-//            kieFileSystem.write("src/main/resources/" + file.getFilename(), file.getInputStream());
+            kieFileSystem.write(ResourceFactory.newClassPathResource("rules/" + file.getFilename()));
+//            String content = new String(file.getInputStream().readAllBytes(), StandardCharsets.UTF_8);
+//            kieFileSystem.write("src/main/resources/" + file.getFilename(), content);
+////            kieFileSystem.write("src/main/resources/" + file.getFilename(), file.getInputStream());
         }
-//        kieFileSystem.write(ResourceFactory.newClassPathResource("rules/lender-blue.xls"));
 
         KieBuilder kb = kieServices.newKieBuilder(kieFileSystem);
         kb.buildAll();
