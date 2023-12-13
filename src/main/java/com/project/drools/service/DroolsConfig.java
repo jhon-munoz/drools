@@ -5,6 +5,8 @@ import org.kie.api.builder.KieBuilder;
 import org.kie.api.builder.KieFileSystem;
 import org.kie.api.builder.KieModule;
 import org.kie.api.builder.KieRepository;
+import org.kie.api.builder.KieScanner;
+import org.kie.api.builder.ReleaseId;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.internal.io.ResourceFactory;
@@ -14,15 +16,14 @@ import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
 
 
 @Configuration
 public class DroolsConfig {
 
-    private static final String G = "com.example";
-    private static final String A = "demo";
-    private static final String V = "1.0.0";
+    private static final String G = "com.project";
+    private static final String A = "drools";
+    private static final String V = "0.0.1-SNAPSHOT";
 
     private final KieServices kieServices = KieServices.Factory.get();
 
@@ -58,10 +59,10 @@ public class DroolsConfig {
         return kieContainer.newKieSession();
     }
 
-//    @Bean
-//    public KieScanner kieScanner(KieContainer kieContainer) {
-//        KieScanner kieScanner = KieServices.Factory.get().newKieScanner(kieContainer);
-//        kieScanner.start(1L); // Adjust the scan interval as needed
-//        return kieScanner;
-//    }
+    @Bean
+    public KieScanner kieScanner(KieContainer kieContainer) {
+        KieScanner kieScanner = kieServices.newKieScanner(kieContainer);
+        kieScanner.start(1000L); // Adjust the scan interval as needed
+        return kieScanner;
+    }
 }

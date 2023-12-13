@@ -16,8 +16,8 @@ public class RuleController {
     @Autowired
     private KieSession kieSession;
 
-//    @Autowired
-//    private KieScanner kieScanner;
+    @Autowired
+    private KieScanner kieScanner;
 
     @PostMapping("/applyDiscount")
     public Product applyDiscount(@RequestBody Product product) {
@@ -26,11 +26,11 @@ public class RuleController {
         return product;
     }
 
-//    @PostMapping("/reload")
-//    public String reloadRules() {
-//        kieScanner.stop();
-//        kieScanner.scanNow();
-//        kieScanner.start(1L);
-//        return "Reglas recargadas exitosamente.";
-//    }
+    @PostMapping("/reload")
+    public String reloadRules() {
+        kieScanner.stop();
+        kieScanner.scanNow();
+        kieScanner.start(1L);
+        return "Reglas recargadas exitosamente.";
+    }
 }
