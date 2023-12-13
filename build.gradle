@@ -12,17 +12,17 @@ java {
 	sourceCompatibility = '17'
 }
 
-publishing {
-	publications {
-		maven(MavenPublication) {
-			groupId 'com.project'
-			artifactId 'drools'
-			version '0.0.1-SNAPSHOT'
-
-			from components.java
-		}
-	}
-}
+//publishing {
+//	publications {
+//		maven(MavenPublication) {
+//			groupId 'com.project'
+//			artifactId 'drools'
+//			version '0.0.1-SNAPSHOT'
+//
+//			from components.java
+//		}
+//	}
+//}
 
 configurations {
 	compileOnly {
